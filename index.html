@@ -99,7 +99,7 @@
             z-index: 20;
             animation: spiderDrop 2s ease-out forwards;
         }
-        
+
         .spider-thread {
             width: 2px;
             height: 100px; /* Largo del hilo */
@@ -177,7 +177,7 @@
         .comic-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 250px 150px;
+            grid-template-rows: 450px 150px;
             gap: 15px;
         }
 
@@ -201,7 +201,8 @@
         .panel-1 {
             grid-column: 1 / -1;
             background-image: url('fotos/pic-1.jpeg');
-            background: linear-gradient(45deg, var(--spidey-red), var(--spidey-blue));
+            background-position: center center;
+            /* background: linear-gradient(45deg, var(--spidey-red), var(--spidey-blue)); */
             display: flex;
             align-items: flex-end;
             justify-content: right;
@@ -217,6 +218,7 @@
             font-size: 1.2rem;
             padding: 15px;
             background-image: url("fotos/pic-1.jpeg");
+            background-size: cover;
         }
 
         .panel-3 {
