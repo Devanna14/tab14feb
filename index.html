@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,47 +19,115 @@
         /* --- ANIMACIONES DEFINIDAS --- */
         /* 1. Fondo de semitonos moviéndose */
         @keyframes scrollBackground {
-            from { background-position: 0 0; }
-            to { background-position: 100% 100%; }
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 100% 100%;
+            }
         }
 
         /* 2. Sticker balanceándose */
         @keyframes swingSticker {
-            0% { transform: rotate(-15deg); }
-            50% { transform: rotate(-5deg); }
-            100% { transform: rotate(-15deg); }
+            0% {
+                transform: rotate(-15deg);
+            }
+
+            50% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(-15deg);
+            }
         }
 
         /* 3. flotando */
         @keyframes floatBubble {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* 4. Araña bajando */
         @keyframes spiderDrop {
-            0% { top: -100px; }
-            100% { top: 20px; }
+            0% {
+                top: -100px;
+            }
+
+            100% {
+                top: 20px;
+            }
         }
+
         @keyframes spiderWiggle {
-             0%, 100% { transform: rotate(0deg); }
-             25% { transform: rotate(5deg); }
-             75% { transform: rotate(-5deg); }
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
         }
 
         /* 5. Vibración del título al pasar el mouse */
         @keyframes shakeImpact {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(3px, 1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+
+            90% {
+                transform: translate(1px, 2px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
         }
 
 
@@ -71,8 +140,8 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-image: radial-gradient(rgba(0,0,0,0.3) 15%, transparent 16%),
-                              radial-gradient(rgba(0,0,0,0.3) 15%, transparent 16%);
+            background-image: radial-gradient(rgba(0, 0, 0, 0.3) 15%, transparent 16%),
+                radial-gradient(rgba(0, 0, 0, 0.3) 15%, transparent 16%);
             background-size: 30px 30px;
             background-position: 0 0, 15px 15px;
             /* Animación del fondo */
@@ -102,7 +171,8 @@
 
         .spider-thread {
             width: 2px;
-            height: 100px; /* Largo del hilo */
+            height: 100px;
+            /* Largo del hilo */
             background-color: var(--black);
             margin: 0 auto;
             position: relative;
@@ -134,7 +204,7 @@
         }
 
         .header-box:hover {
-             animation: shakeImpact 0.5s;
+            animation: shakeImpact 0.5s;
         }
 
         .header-box::before {
@@ -193,7 +263,7 @@
 
         .panel:hover {
             transform: scale(1.03) rotate(1deg);
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+            box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
             z-index: 5;
         }
 
@@ -229,6 +299,61 @@
             justify-content: center;
         }
 
+        /* Sección de musica */
+        .music-section {
+            grid-column: 1 / -1;
+            /* Ocupa todo el ancho */
+            background-color: white;
+            border: 3px solid var(--black);
+            padding: 15px;
+            margin-top: 10px;
+            position: relative;
+            /* Un patrón de rayas tipo */
+            background-image: repeating-linear-gradient(45deg,
+                    #ffffff,
+                    #ffffff 10px,
+                    #f0f0f0 10px,
+                    #f0f0f0 20px);
+        }
+
+        .music-title {
+            background: var(--black);
+            color: var(--comic-yellow);
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            padding: 5px 15px;
+            display: inline-block;
+            transform: rotate(-2deg);
+            /* Un poco chueco estilo cómic */
+            margin-bottom: 15px;
+            border: 2px solid var(--comic-yellow);
+        }
+
+        /* Estilo para cada canción (usando iframe de Spotify) */
+        .track-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .simple-track {
+            background: var(--spidey-red);
+            color: white;
+            padding: 10px;
+            border: 2px solid var(--black);
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 4px 4px 0 var(--black);
+            transition: transform 0.2s;
+        }
+
+        .simple-track:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 var(--black);
+        }
+
         .speech-bubble {
             background: white;
             border: 3px solid var(--black);
@@ -242,8 +367,9 @@
             bottom: -20px;
             right: 10px;
             max-width: 180px;
-            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
-            animation: floatBubble 2.5s ease-in-out infinite; /* Animación de flotar */
+            box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+            animation: floatBubble 2.5s ease-in-out infinite;
+            /* Animación de flotar */
         }
 
         /* Estilo para el corazón latiendo en el panel 3 */
@@ -253,14 +379,29 @@
         }
 
         @keyframes heartBeat {
-            0% { transform: scale(1); }
-            14% { transform: scale(1.3); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.3); }
-            70% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            14% {
+                transform: scale(1.3);
+            }
+
+            28% {
+                transform: scale(1);
+            }
+
+            42% {
+                transform: scale(1.3);
+            }
+
+            70% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="hanging-spider-container">
@@ -292,8 +433,18 @@
                 <div class="heart-beat">❤️</div>
                 <span style="font-size: 0.8rem; margin-top: 5px;">(Edición Limitada)</span>
             </div>
+
+            <div class="music-section">
+                <div class="music-title">SOUNDTRACK VOL. 1</div>
+                <div class="track-container">
+                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2t4RCWbICUqhPKVQeA7VPq?utm_source=generator&theme=0" width="100%" height="80%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5l8bXrvNDKsc41o07lL9YN?utm_source=generator" width="100%" height="80%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1EA6r1EKa3BUMc9iVpYimv?utm_source=generator" width="100%" height="80%" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 
 </body>
+
 </html>
