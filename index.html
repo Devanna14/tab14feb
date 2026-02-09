@@ -16,6 +16,7 @@
 
         :root {
             --spidey-red: #E23636;
+            --spidey-pink: #e236a9;
             --spidey-blue: #01499D;
             --comic-yellow: #FBDD03;
             --comic-gray: #5a5a59;
@@ -383,6 +384,68 @@
             box-shadow: 6px 6px 0 var(--black);
         }
 
+        /*  Sección de estadisticas */
+        .stats-section {
+            grid-column: 1 / -1;
+            background: white;
+            border: 3px solid var(--black);
+            padding: 15px;
+            position: relative;
+        }
+
+        .stats-title {
+            background: var(--spidey-blue);
+            color: white;
+            font-family: 'Bangers';
+            display: inline-block;
+            padding: 5px 10px;
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            border: 2px solid var(--black);
+        }
+
+        .stats-title-2{
+            background: var(--spidey-pink);
+            color: white;
+            font-family: 'Bangers';
+            display: inline-block;
+            padding: 5px 10px;
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            border: 2px solid var(--black);
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .stat-row span {
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 15px;
+            background: #ddd;
+            border: 2px solid var(--black);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            background: var(--spidey-red);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .red-fill { background: var(--black); } 
+
         /* Sección de videos */
         .video-section {
             grid-column: 1 / -1;
@@ -665,8 +728,66 @@
                 </div>
             </div>
 
-            <div class="final-section">
+            <br>
+            <div class="stats-section">
+                <div class="stats-title stats-title">TU NIVEL DE PODER</div>
+                <div class="stat-row">
+                    <span>PACIENCIA</span>
+                    <div class="progress-bar"><div class="fill" style="width: 95%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>GUAPURA</span>
+                    <div class="progress-bar"><div class="fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>BESOS</span>
+                    <div class="progress-bar"><div class="fill" style="width: 1000%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>COQUETO 🙄</span>
+                    <div class="progress-bar"><div class="fill" style="width: 50%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>BROMISTA</span>
+                    <div class="progress-bar"><div class="fill" style="width: 10000%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>MENTIRILLAS</span>
+                    <div class="progress-bar"><div class="fill red-fill" style="width: 80%;"></div></div>
+                </div>
+            </div>
+            <br>
+            <div class="stats-section">
+                <div class="stats-title-2">MI NIVEL DE PODER</div>
+                <div class="stat-row">
+                    <span>PACIENCIA</span>
+                    <div class="progress-bar"><div class="fill" style="width: 1000%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>GUAPURA</span>
+                    <div class="progress-bar"><div class="fill" style="width: 1000%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>BESOS</span>
+                    <div class="progress-bar"><div class="fill" style="width: 1000%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>COQUETA SOLO CONTIGO</span>
+                    <div class="progress-bar"><div class="fill" style="width: 1000%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>BROMISTA</span>
+                    <div class="progress-bar"><div class="fill" style="width: 10000%;"></div></div>
+                </div>
+                <div class="stat-row">
+                    <span>MENTIRILLAS</span>
+                    <div class="progress-bar"><div class="fill red-ffill" style="width: 0%;"></div></div>
+                </div>
 
+                <p>I´m perfect dah 🙄</p>
+            </div>
+
+            <div class="final-section">
                 <div class="final-photo-frame">
                     <img src="fotos/pic-2.jpeg" alt="Nosotros para siempre">
                 </div>
