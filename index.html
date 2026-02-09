@@ -518,6 +518,41 @@
             font-family: 'Comic Neue', cursive;
         }
 
+        /* Seccion final misiones */
+        .missions-area {
+            grid-column: 1 / -1;
+            margin-top: 20px;
+        }
+        .mission-title {
+            font-family: 'Bangers';
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px var(--black);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .coupons-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .coupon {
+            background: var(--comic-yellow);
+            border: 2px dashed var(--black);
+            padding: 15px;
+            font-weight: bold;
+            transform: rotate(-2deg);
+            transition: 0.3s;
+            cursor: pointer;
+            flex: 1 1 150px; /* Responsive */
+            text-align: center;
+        }
+        .coupon:hover {
+            transform: scale(1.1) rotate(2deg);
+            background: white;
+        }
+
         /* --- Sección final - propuesta --- */
         .final-section {
             grid-column: 1 / -1;
@@ -791,6 +826,18 @@
                 <div class="final-photo-frame">
                     <img src="fotos/pic-2.jpeg" alt="Nosotros para siempre">
                 </div>
+
+                <div class="missions-area">
+                    <div class="mission-title">🕷️ MISIONES SECUNDARIAS (Vales)</div>
+                    <div class="coupons-grid">
+                        <div class="coupon">🎟️ Una cena donde tú quieras</div>
+                        <div class="coupon">🎟️ Masaje de espalda (15 min)</div>
+                        <div class="coupon">🎟️ Perdonar una mentirilla 🙄</div>
+                        <div class="coupon">🎟️ Maratón de películas Marvel</div>
+                    </div>
+                </div>
+
+                <br>
                 <div class="question-box">
                     <p class="question-intro">Por este 14 de Febrero... y todos los que siguen. ❤️</p>
                     <h1 class="big-question">
