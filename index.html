@@ -494,17 +494,25 @@
 
         .video-wrapper video {
             display: block;
-            height: 500px;
-            width: auto;
-            max-width: 100%;
+            width: auto;  
+            height: auto; 
+            max-height: 500px; 
+            max-width: 100%; 
+            object-fit: contain;
         }
 
         /* Ajuste para celulares */
         @media (max-width: 600px) {
+            .video-wrapper {
+                width: 100%; 
+                display: flex;
+                justify-content: center;
+            }
+
             .video-wrapper video {
+                width: 100%; 
                 height: auto;
-                width: 100%;
-                max-height: 70vh;
+                max-height: 70vh; 
             }
         }
 
@@ -746,18 +754,32 @@
                 <div class="video-title">VIDEOS EXCLUSIVOS! 🎬</div>
                 <div class="video-container-flex">
                     <div class="video-wrapper">
-                        <video controls>
-                            <source src="multimedia/video-1.mp4" type="video/mp4">
+                        <video controls autoplay loop muted playsinline>
+                            <source src="multimedia/video-1.mp4" type="video/mp4" >
                             Tu navegador no soporta video.
                         </video>
                         <div class="video-caption">Primera vez en Walmart</div>
                     </div>
                      <div class="video-wrapper">
-                        <video controls>
+                        <video controls autoplay loop muted playsinline>
                             <source src="multimedia/video-2.mp4" type="video/mp4">
                             Tu navegador no soporta video.
                         </video>
                         <div class="video-caption">Tu cumpleaños 🥳🎁</div>
+                    </div>
+                    <div class="video-wrapper">
+                        <video controls autoplay loop muted playsinline>
+                            <source src="multimedia/video-3.mp4" type="video/mp4">
+                            Tu navegador no soporta video.
+                        </video>
+                        <div class="video-caption">NANIIIII</div>
+                    </div>
+                    <div class="video-wrapper">
+                        <video controls autoplay loop muted playsinline>
+                            <source src="multimedia/video-4.mp4" type="video/mp4">
+                            Tu navegador no soporta video.
+                        </video>
+                        <div class="video-caption">En las Kangreburgers</div>
                     </div>
                 </div>
             </div>
