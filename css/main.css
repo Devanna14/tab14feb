@@ -465,7 +465,7 @@ body {
 /* Panel Principal (Foto 1) */
 .panel-1 {
  grid-column: 1 / -1;
- background-image: url('fotos/pic-1.jpeg');
+ background-image: url('../fotos/pic-1.jpeg');
  background-position: center center;
  display: flex;
  align-items: flex-end;
