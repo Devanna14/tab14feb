@@ -915,4 +915,18 @@ body {
  .question-box {
   padding: 30px 15px;
  }
+
+ .text-love {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.8rem;
+  color: var(--spidey-red)
+ }
+
+  .text-copy {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.3rem;
+  color: var(--spidey-red)
+ }
 }
