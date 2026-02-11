@@ -1,0 +1,994 @@
+/* Importamos fuentes estilo cómic */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&display=swap');
+
+* {
+ box-sizing: border-box;
+}
+
+:root {
+ --spidey-red: #E23636;
+ --spidey-pink: #e236a9;
+ --spidey-blue: #01499D;
+ --comic-yellow: #FBDD03;
+ --comic-gray: #5a5a59;
+ --black: #1a1a1a;
+}
+
+/* Modificación del Scrollbar */
+::-webkit-scrollbar {
+ width: 18px;
+}
+
+::-webkit-scrollbar-track {
+ background-color: white;
+ border-left: 3px solid var(--black);
+ background-image: radial-gradient(var(--comic-gray) 15%, transparent 16%);
+ background-size: 10px 10px;
+}
+
+::-webkit-scrollbar-thumb {
+ background-color: var(--spidey-red);
+ border: 3px solid var(--black);
+ border-radius: 20px;
+ box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+ background-color: var(--spidey-blue);
+ cursor: grab;
+}
+
+/* --- ANIMACIONES DEFINIDAS --- */
+/* 1. Fondo de semitonos moviéndose */
+@keyframes scrollBackground {
+ from {
+  background-position: 0 0;
+ }
+
+ to {
+  background-position: 100% 100%;
+ }
+}
+
+/* 2. Sticker balanceándose */
+@keyframes swingSticker {
+ 0% {
+  transform: rotate(-15deg);
+ }
+
+ 50% {
+  transform: rotate(-5deg);
+ }
+
+ 100% {
+  transform: rotate(-15deg);
+ }
+}
+
+/* 3. flotando */
+@keyframes floatBubble {
+
+ 0%,
+ 100% {
+  transform: translateY(0);
+ }
+
+ 50% {
+  transform: translateY(-10px);
+ }
+}
+
+/* 4. Araña bajando */
+@keyframes spiderDrop {
+ 0% {
+  top: -100px;
+ }
+
+ 100% {
+  top: 20px;
+ }
+}
+
+@keyframes spiderWiggle {
+
+ 0%,
+ 100% {
+  transform: rotate(0deg);
+ }
+
+ 25% {
+  transform: rotate(5deg);
+ }
+
+ 75% {
+  transform: rotate(-5deg);
+ }
+}
+
+/* 5. Vibración del título al pasar el mouse */
+@keyframes shakeImpact {
+ 0% {
+  transform: translate(1px, 1px) rotate(0deg);
+ }
+
+ 10% {
+  transform: translate(-1px, -2px) rotate(-1deg);
+ }
+
+ 20% {
+  transform: translate(-3px, 0px) rotate(1deg);
+ }
+
+ 30% {
+  transform: translate(3px, 2px) rotate(0deg);
+ }
+
+ 40% {
+  transform: translate(1px, -1px) rotate(1deg);
+ }
+
+ 50% {
+  transform: translate(-1px, 2px) rotate(-1deg);
+ }
+
+ 60% {
+  transform: translate(-3px, 1px) rotate(0deg);
+ }
+
+ 70% {
+  transform: translate(3px, 1px) rotate(-1deg);
+ }
+
+ 80% {
+  transform: translate(-1px, -1px) rotate(1deg);
+ }
+
+ 90% {
+  transform: translate(1px, 2px) rotate(0deg);
+ }
+
+ 100% {
+  transform: translate(1px, -2px) rotate(-1deg);
+ }
+}
+
+/* Loader */
+#comic-loader {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ background-color: var(--spidey-blue);
+ /* Fondo Azul Spidey */
+
+ /* Patrón de puntos para textura */
+ background-image: radial-gradient(rgba(0, 0, 0, 0.2) 15%, transparent 16%);
+ background-size: 30px 30px;
+
+ z-index: 99999;
+ /* Encima de TODO */
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ transition: transform 0.8s ease-in-out;
+ /* Animación de salida suave */
+}
+
+/* Clase para ocultarlo cuando termine de cargar */
+.loader-hidden {
+ transform: translateY(-100%);
+ /* Se va hacia arriba */
+}
+
+.loader-container {
+ text-align: center;
+ position: relative;
+}
+
+/* El hilo de la telaraña */
+.loader-web {
+ width: 4px;
+ height: 50vh;
+ /* Largo inicial */
+ background: var(--black);
+ margin: 0 auto;
+ position: absolute;
+ bottom: 60px;
+ /* Conecta con la araña */
+ left: 50%;
+ transform: translateX(-50%);
+ animation: webStretch 2s infinite ease-in-out;
+}
+
+/* La araña */
+.loader-spider {
+ font-size: 4rem;
+ position: relative;
+ z-index: 2;
+ animation: spiderBounce 2s infinite ease-in-out;
+ filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.3));
+}
+
+/* Texto de carga */
+.loader-text {
+ font-family: 'Bangers', cursive;
+ font-size: 2rem;
+ color: white;
+ margin-top: 20px;
+ text-shadow: 3px 3px 0 var(--black);
+ letter-spacing: 2px;
+ animation: pulseText 1s infinite alternate;
+}
+
+/* --- ANIMACIONES DEL LOADER --- */
+@keyframes spiderBounce {
+
+ 0%,
+ 100% {
+  transform: translateY(0);
+ }
+
+ 50% {
+  transform: translateY(20px);
+ }
+}
+
+@keyframes webStretch {
+
+ 0%,
+ 100% {
+  height: 40vh;
+ }
+
+ 50% {
+  height: 42vh;
+ }
+
+ /* El hilo se estira con la araña */
+}
+
+@keyframes pulseText {
+ from {
+  transform: scale(1);
+ }
+
+ to {
+  transform: scale(1.05);
+ }
+}
+
+/* --- ESTILOS GENERALES --- */
+body {
+ background-color: var(--spidey-blue);
+ font-family: 'Comic Neue', cursive;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ margin: 0;
+ background-image: radial-gradient(rgba(0, 0, 0, 0.3) 15%, transparent 16%),
+  radial-gradient(rgba(0, 0, 0, 0.3) 15%, transparent 16%);
+ background-size: 30px 30px;
+ background-position: 0 0, 15px 15px;
+ /* Animación del fondo */
+ animation: scrollBackground 60s linear infinite;
+ overflow-x: hidden;
+}
+
+.comic-cover {
+ background: white;
+ width: 90%;
+ max-width: 500px;
+ border: 4px solid var(--black);
+ padding: 20px;
+ position: relative;
+ animation: floatBubble 3s ease-in-out infinite alternate;
+}
+
+/* La arañita colgando */
+.hanging-spider-container {
+ position: absolute;
+ top: 20px;
+ right: 30px;
+ z-index: 20;
+ animation: spiderDrop 2s ease-out forwards;
+}
+
+.spider-thread {
+ width: 2px;
+ height: 100px;
+ /* Largo del hilo */
+ background-color: var(--black);
+ margin: 0 auto;
+ position: relative;
+ top: 10px;
+}
+
+.spider-body {
+ font-size: 2rem;
+ animation: spiderWiggle 3s ease-in-out infinite;
+ position: relative;
+ z-index: 21;
+}
+
+
+/* Cabecera estilo Marvel */
+.header-box {
+ background: var(--spidey-red);
+ color: white;
+ padding: 10px;
+ text-transform: uppercase;
+ font-family: 'Bangers', cursive;
+ font-size: 2.5rem;
+ text-align: center;
+ letter-spacing: 2px;
+ border: 3px solid var(--black);
+ margin-bottom: 30px;
+ position: relative;
+ cursor: default;
+}
+
+.header-box:hover {
+ animation: shakeImpact 0.5s;
+}
+
+.header-box::before {
+ content: 'MARVELOUS LOVE';
+ position: absolute;
+ top: -15px;
+ left: 50%;
+ transform: translateX(-50%);
+ background: white;
+ color: var(--black);
+ font-size: 0.8rem;
+ padding: 2px 10px;
+ border: 2px solid var(--black);
+ font-family: 'Comic Neue', cursive;
+}
+
+/* Sección de noticias */
+.breaking-news {
+ grid-column: 1 / -1;
+ background: var(--comic-yellow);
+ border: 3px solid var(--black);
+ overflow: hidden;
+ white-space: nowrap;
+ box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+ margin-bottom: 20px;
+ font-family: 'Bangers', cursive;
+ font-size: 1.2rem;
+ padding: 5px 0;
+}
+
+.news-scroll {
+ display: inline-block;
+ padding-left: 100%;
+ animation: scrollNews 15s linear infinite;
+}
+
+@keyframes scrollNews {
+ 0% {
+  transform: translate(0, 0);
+ }
+
+ 100% {
+  transform: translate(-100%, 0);
+ }
+}
+
+/* Sticker de fecha */
+.sticker {
+ position: absolute;
+ top: -15px;
+ left: -15px;
+ background: var(--comic-yellow);
+ border: 3px solid var(--black);
+ border-radius: 50%;
+ width: 80px;
+ height: 80px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ font-weight: bold;
+ z-index: 10;
+ box-shadow: 3px 3px 0 var(--black);
+ /* Animación de balanceo */
+ transform-origin: top center;
+ animation: swingSticker 3s ease-in-out infinite;
+}
+
+/* Grid de viñetas */
+.comic-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ grid-template-rows: 450px 150px auto;
+ gap: 15px;
+}
+
+.panel {
+ border: 3px solid var(--black);
+ background-size: cover;
+ background-position: center;
+ position: relative;
+ overflow: hidden;
+ background-color: #ddd;
+ transition: all 0.3s ease;
+}
+
+.panel:hover {
+ transform: scale(1.03) rotate(1deg);
+ box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+ z-index: 5;
+}
+
+/* Panel Principal (Grande) */
+.panel-1 {
+ grid-column: 1 / -1;
+ background-image: url('fotos/pic-1.jpeg');
+ background-position: center center;
+ display: flex;
+ align-items: flex-end;
+ justify-content: right;
+}
+
+.panel-2 {
+ background-color: var(--spidey-blue);
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ text-align: center;
+ font-size: 1.2rem;
+ padding: 15px;
+ background-size: cover;
+}
+
+.panel-3 {
+ background: linear-gradient(45deg, var(--spidey-red), var(--spidey-blue));
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+}
+
+/* Sección de musica */
+.music-section {
+ grid-column: 1 / -1;
+ /* Ocupa todo el ancho */
+ background-color: white;
+ border: 3px solid var(--black);
+ padding: 15px;
+ margin-top: 10px;
+ position: relative;
+ /* Un patrón de rayas tipo */
+ background-image: repeating-linear-gradient(45deg,
+   #ffffff,
+   #ffffff 10px,
+   #f0f0f0 10px,
+   #f0f0f0 20px);
+}
+
+.music-title {
+ background: var(--black);
+ color: var(--comic-yellow);
+ font-family: 'Bangers', cursive;
+ font-size: 1.5rem;
+ padding: 5px 15px;
+ display: inline-block;
+ transform: rotate(-2deg);
+ /* Un poco chueco estilo cómic */
+ margin-bottom: 15px;
+ border: 2px solid var(--comic-yellow);
+}
+
+/* Estilo para cada canción (usando iframe de Spotify) */
+.track-container {
+ display: flex;
+ flex-direction: column;
+}
+
+.simple-track {
+ background: var(--spidey-red);
+ color: white;
+ padding: 10px;
+ border: 2px solid var(--black);
+ text-decoration: none;
+ font-weight: bold;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ box-shadow: 4px 4px 0 var(--black);
+ transition: transform 0.2s;
+}
+
+.simple-track:hover {
+ transform: translate(-2px, -2px);
+ box-shadow: 6px 6px 0 var(--black);
+}
+
+/*  Sección de estadisticas */
+.stats-section {
+ grid-column: 1 / -1;
+ background: white;
+ border: 3px solid var(--black);
+ padding: 15px;
+ position: relative;
+}
+
+.stats-title {
+ background: var(--spidey-blue);
+ color: white;
+ font-family: 'Bangers';
+ display: inline-block;
+ padding: 5px 10px;
+ position: absolute;
+ top: -15px;
+ left: 10px;
+ border: 2px solid var(--black);
+}
+
+.stats-title-2 {
+ background: var(--spidey-pink);
+ color: white;
+ font-family: 'Bangers';
+ display: inline-block;
+ padding: 5px 10px;
+ position: absolute;
+ top: -15px;
+ left: 10px;
+ border: 2px solid var(--black);
+}
+
+.stat-row {
+ display: flex;
+ align-items: center;
+ margin: 10px 0;
+ font-weight: bold;
+}
+
+.stat-row span {
+ width: 100px;
+ text-align: right;
+ margin-right: 10px;
+}
+
+.progress-bar {
+ flex-grow: 1;
+ height: 15px;
+ background: #ddd;
+ border: 2px solid var(--black);
+ border-radius: 10px;
+ overflow: hidden;
+}
+
+.fill {
+ height: 100%;
+ background: var(--spidey-red);
+ box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.red-fill {
+ background: var(--black);
+}
+
+/* Sección de videos */
+.video-section {
+ grid-column: 1 / -1;
+ margin-top: 30px;
+ padding: 20px;
+ background-color: var(--comic-gray);
+ border: 4px solid var(--black);
+ background-size: 20px 20px;
+}
+
+.video-title {
+ background: var(--comic-yellow);
+ color: var(--black);
+ font-family: 'Bangers', cursive;
+ font-size: 1.8rem;
+ padding: 5px 20px;
+ border: 3px solid var(--black);
+ box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.3);
+ margin-bottom: 20px;
+ display: inline-block;
+}
+
+/* Contenedor flexible videos centrados */
+.video-container-flex {
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: center;
+ gap: 20px;
+ align-items: flex-start;
+}
+
+.video-wrapper {
+ width: fit-content;
+ max-width: 100%;
+ background: black;
+ border: 4px solid var(--black);
+ box-shadow: 10px 10px 0 var(--comic-yellow);
+ padding: 0;
+ transition: transform 0.3s ease;
+ display: flex;
+ flex-direction: column;
+ margin: 0 auto;
+}
+
+.video-wrapper:hover {
+ transform: scale(1.02);
+ box-shadow: 15px 15px 0 var(--comic-yellow);
+ z-index: 10;
+}
+
+.video-wrapper video {
+ display: block;
+ width: auto;
+ height: auto;
+ max-height: 500px;
+ max-width: 100%;
+ object-fit: cover;
+}
+
+/* Ajuste para celulares */
+@media (max-width: 600px) {
+ .video-section {
+  padding: 10px;
+ }
+
+ .video-wrapper {
+  max-width: 100%;
+ }
+
+ .video-wrapper video {
+  max-height: 70vh;
+ }
+
+ .video-caption {
+  width: 100%;
+ }
+}
+
+.video-caption {
+ background: white;
+ color: var(--black);
+ text-align: center;
+ font-weight: bold;
+ padding: 8px;
+ border-top: 3px solid var(--black);
+ font-family: 'Comic Neue', cursive;
+}
+
+/* Seccion final misiones */
+.missions-area {
+ grid-column: 1 / -1;
+ margin-top: 20px;
+}
+
+.mission-title {
+ font-family: 'Bangers';
+ font-size: 1.5rem;
+ color: var(--spidey-blue);
+ margin-bottom: 10px;
+ text-align: center;
+}
+
+.coupons-grid {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px;
+ justify-content: center;
+}
+
+.coupon {
+ background: var(--comic-yellow);
+ border: 2px dashed var(--black);
+ padding: 15px;
+ font-weight: bold;
+ transform: rotate(-2deg);
+ transition: 0.3s;
+ cursor: pointer;
+ flex: 1 1 150px;
+ /* Responsive */
+ text-align: center;
+}
+
+.coupon:hover {
+ transform: scale(1.1) rotate(2deg);
+ background: white;
+}
+
+/* --- Sección final - propuesta --- */
+.final-section {
+ grid-column: 1 / -1;
+ margin-top: 50px;
+ margin-bottom: 30px;
+ text-align: center;
+ position: relative;
+}
+
+/* El marco de la foto final */
+.final-photo-frame {
+ border: 5px solid var(--black);
+ box-shadow: 0 0 20px 5px var(--spidey-blue);
+ background: white;
+ padding: 10px;
+ transform: rotate(1deg);
+ margin-bottom: 30px;
+}
+
+/* Adaptar imagen al marco */
+.final-photo-frame img {
+ width: 100%;
+ height: auto;
+ display: block;
+ border: 2px solid var(--black);
+}
+
+/* La caja de la pregunta */
+.question-box {
+ background-color: #fff;
+ /* Fondo blanco base */
+
+ /* Patrón de puntos estilo cómic (Halftone) */
+ background-image: radial-gradient(var(--comic-yellow) 40%, transparent 41%);
+ background-size: 20px 20px;
+ /* Tamaño de los puntos */
+
+ border: 4px solid var(--black);
+ padding: 40px 20px;
+ box-shadow: 15px 15px 0 var(--black);
+ /* Sombra dura */
+
+ position: relative;
+ max-width: 100%;
+ text-align: center;
+
+ /* Un poco chueco para darle dinamismo */
+ transform: rotate(-1deg);
+ margin-top: 20px;
+}
+
+/* Efecto de cinta adhesiva arriba */
+.tape-sticker {
+ width: 150px;
+ height: 40px;
+ background-color: rgba(255, 255, 255, 0.6);
+ border-left: 2px dashed rgba(0, 0, 0, 0.1);
+ border-right: 2px dashed rgba(0, 0, 0, 0.1);
+ box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+ position: absolute;
+ top: -20px;
+ left: 50%;
+ transform: translateX(-50%) rotate(2deg);
+ z-index: 25;
+}
+
+/* Texto introductorio: Como una etiqueta negra */
+.question-intro {
+ display: inline-block;
+ background: var(--black);
+ color: white;
+ padding: 5px 15px;
+ font-family: 'Comic Neue', cursive;
+ font-size: 1.1rem;
+ font-weight: bold;
+ transform: rotate(-2deg);
+ /* Contraste con la caja */
+ margin-bottom: 20px;
+ box-shadow: 3px 3px 0 var(--spidey-red);
+}
+
+/* La Gran Pregunta */
+.big-question {
+ font-family: 'Bangers', cursive;
+ font-size: 3.5rem;
+ /* ¡Más grande! */
+ line-height: 1;
+ color: var(--spidey-red);
+
+ /* Borde blanco alrededor de las letras para separar del fondo */
+ -webkit-text-stroke: 2px var(--black);
+ text-shadow:
+  4px 4px 0px #000;
+ /* Sombra sólida negra */
+
+ margin: 20px 0;
+ animation: heartBeat 1.5s ease-in-out infinite;
+ z-index: 2;
+ position: relative;
+}
+
+/* Resaltar parte del texto en otro color (Azul Spidey) */
+.highlight-text {
+ color: var(--spidey-blue);
+ font-size: 4rem;
+ /* Un poco más grande aún */
+}
+
+/* El texto de abajo (Postdata) */
+.question-date {
+ font-family: 'Comic Neue', cursive;
+ font-size: 1.2rem;
+ font-weight: bold;
+ color: var(--black);
+ background: white;
+ border: 2px solid var(--black);
+ display: inline-block;
+ padding: 10px;
+ border-radius: 10px;
+ box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+ margin-top: 20px;
+}
+
+/* La telaraña decorativa */
+.question-box {
+ /* Fondo Rojo Intenso */
+ background-color: var(--spidey-red);
+
+ /* Textura sutil: Unas líneas diagonales muy suaves para que no sea un rojo plano aburrido */
+ background-image: repeating-linear-gradient(45deg,
+   rgba(0, 0, 0, 0.05),
+   rgba(0, 0, 0, 0.05) 2px,
+   transparent 2px,
+   transparent 10px);
+
+ /* Borde Negro Grueso */
+ border: 4px solid var(--black);
+ border-radius: 15px;
+ /* Bordes redondeados, más suave */
+
+ /* Sombra sólida en Azul para dar profundidad 3D */
+ box-shadow: 0 8px 0 var(--spidey-blue), 0 15px 20px rgba(0, 0, 0, 0.3);
+
+ padding: 40px 20px;
+ margin-top: 50px;
+ /* Espacio extra arriba */
+ margin-bottom: 50px;
+ position: relative;
+ text-align: center;
+ max-width: 100%;
+}
+
+/* Máscara flotante arriba */
+.spidey-icon-mask {
+ font-size: 3rem;
+ position: absolute;
+ top: -35px;
+ left: 50%;
+ transform: translateX(-50%);
+ background: var(--spidey-red);
+ border: 3px solid var(--black);
+ border-radius: 50%;
+ width: 70px;
+ height: 70px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ box-shadow: 0 4px 0 var(--black);
+ z-index: 10;
+}
+
+/* Texto introductorio */
+.question-intro {
+ font-family: 'Comic Neue', cursive;
+ font-size: 1.2rem;
+ color: white;
+ /* Blanco para contraste */
+ font-weight: bold;
+ margin-bottom: 15px;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* La Pregunta Grande */
+.big-question {
+ font-family: 'Bangers', cursive;
+ font-size: 3.2rem;
+ line-height: 1.1;
+ color: white;
+
+ /* Borde negro alrededor de las letras para máxima legibilidad */
+ -webkit-text-stroke: 2px var(--black);
+ text-shadow: 4px 4px 0 var(--black);
+ /* Sombra negra dura */
+
+ margin: 10px 0 20px 0;
+
+ /* Animación suave de latido */
+ animation: heartBeat 2s infinite;
+}
+
+/* Línea divisoria decorativa */
+.divider-line {
+ height: 3px;
+ background: var(--black);
+ width: 50%;
+ margin: 20px auto;
+ opacity: 0.3;
+ border-radius: 2px;
+}
+
+/* Postdata */
+.question-date {
+ font-family: 'Comic Neue', cursive;
+ font-size: 1rem;
+ font-style: italic;
+ color: rgba(58, 58, 58, 0.9);
+ /* Blanco un poco transparente */
+ font-weight: bold;
+ margin-top: 10px;
+}
+
+/* Telaraña esquina (Opcional, más sutil) */
+.question-box::after {
+ content: '🕸️';
+ font-size: 4rem;
+ position: absolute;
+ bottom: -20px;
+ right: -20px;
+ opacity: 0.8;
+ transform: rotate(-10deg);
+ filter: drop-shadow(2px 2px 0 var(--black));
+}
+
+/* Ajustes Móvil */
+@media (max-width: 600px) {
+ .big-question {
+  font-size: 2.2rem;
+  /* Un poco más pequeño en celular para que quepa bien */
+  -webkit-text-stroke: 1.5px var(--black);
+ }
+
+ .question-box {
+  padding: 30px 15px;
+ }
+}
+
+.speech-bubble {
+ background: white;
+ border: 3px solid var(--black);
+ border-radius: 50% 50% 50% 5px;
+ padding: 20px;
+ text-align: center;
+ color: var(--black);
+ font-weight: bold;
+ font-size: 1rem;
+ position: absolute;
+ bottom: -20px;
+ right: 10px;
+ max-width: 180px;
+ box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+ animation: floatBubble 2.5s ease-in-out infinite;
+}
+
+/* Estilo para el corazón latiendo en el panel 3 */
+.heart-beat {
+ font-size: 1rem;
+ animation: heartBeat 1.2s infinite;
+}
+
+@keyframes heartBeat {
+ 0% {
+  transform: scale(1);
+ }
+
+ 14% {
+  transform: scale(1.1);
+ }
+
+ 28% {
+  transform: scale(1);
+ }
+
+ 42% {
+  transform: scale(1.1);
+ }
+
+ 70% {
+  transform: scale(1);
+ }
+}
