@@ -620,53 +620,211 @@
 
         /* La caja de la pregunta */
         .question-box {
-            background: var(--comic-gray);
+            background-color: #fff; /* Fondo blanco base */
+            
+            /* Patrón de puntos estilo cómic (Halftone) */
+            background-image: radial-gradient(var(--comic-yellow) 40%, transparent 41%);
+            background-size: 20px 20px; /* Tamaño de los puntos */
+            
             border: 4px solid var(--black);
-            padding: 25px;
-            box-shadow: 12px 12px 0 var(--black);
+            padding: 40px 20px;
+            box-shadow: 15px 15px 0 var(--black); /* Sombra dura */
+            
             position: relative;
+            max-width: 100%;
+            text-align: center;
+            
+            /* Un poco chueco para darle dinamismo */
+            transform: rotate(-1deg);
+            margin-top: 20px;
+        }
+
+        /* Efecto de cinta adhesiva arriba */
+        .tape-sticker {
+            width: 150px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-left: 2px dashed rgba(0,0,0,0.1);
+            border-right: 2px dashed rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(2deg);
+            z-index: 25;
+        }
+
+        /* Texto introductorio: Como una etiqueta negra */
+        .question-intro {
+            display: inline-block;
+            background: var(--black);
+            color: white;
+            padding: 5px 15px;
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transform: rotate(-2deg); /* Contraste con la caja */
+            margin-bottom: 20px;
+            box-shadow: 3px 3px 0 var(--spidey-red);
+        }
+
+        /* La Gran Pregunta */
+        .big-question {
+            font-family: 'Bangers', cursive;
+            font-size: 3.5rem; /* ¡Más grande! */
+            line-height: 1;
+            color: var(--spidey-red);
+            
+            /* Borde blanco alrededor de las letras para separar del fondo */
+            -webkit-text-stroke: 2px var(--black); 
+            text-shadow: 
+                4px 4px 0px #000; /* Sombra sólida negra */
+            
+            margin: 20px 0;
+            animation: heartBeat 1.5s ease-in-out infinite;
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Resaltar parte del texto en otro color (Azul Spidey) */
+        .highlight-text {
+            color: var(--spidey-blue);
+            font-size: 4rem; /* Un poco más grande aún */
+        }
+
+        /* El texto de abajo (Postdata) */
+        .question-date {
+            font-family: 'Comic Neue', cursive;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--black);
+            background: white;
+            border: 2px solid var(--black);
+            display: inline-block;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        /* La telaraña decorativa */
+       .question-box {
+            /* Fondo Rojo Intenso */
+            background-color: var(--spidey-red);
+            
+            /* Textura sutil: Unas líneas diagonales muy suaves para que no sea un rojo plano aburrido */
+            background-image: repeating-linear-gradient(
+                45deg,
+                rgba(0, 0, 0, 0.05),
+                rgba(0, 0, 0, 0.05) 2px,
+                transparent 2px,
+                transparent 10px
+            );
+
+            /* Borde Negro Grueso */
+            border: 4px solid var(--black);
+            border-radius: 15px; /* Bordes redondeados, más suave */
+            
+            /* Sombra sólida en Azul para dar profundidad 3D */
+            box-shadow: 0 8px 0 var(--spidey-blue), 0 15px 20px rgba(0,0,0,0.3);
+            
+            padding: 40px 20px;
+            margin-top: 50px; /* Espacio extra arriba */
+            margin-bottom: 50px;
+            position: relative;
+            text-align: center;
             max-width: 100%;
         }
 
-        /* Un pequeño título encima de la pregunta */
+        /* Máscara flotante arriba */
+        .spidey-icon-mask {
+            font-size: 3rem;
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--spidey-red);
+            border: 3px solid var(--black);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 0 var(--black);
+            z-index: 10;
+        }
+
+        /* Texto introductorio */
         .question-intro {
             font-family: 'Comic Neue', cursive;
             font-size: 1.2rem;
-            margin-bottom: 10px;
+            color: white; /* Blanco para contraste */
             font-weight: bold;
-            color: white;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
         }
 
-        /* La pregunta */
+        /* La Pregunta Grande */
         .big-question {
             font-family: 'Bangers', cursive;
-            font-size: 3rem;
-            color: var(--spidey-red);
-            text-shadow: 3px 3px 0 var(--black);
-            margin: 0;
+            font-size: 3.2rem;
             line-height: 1.1;
-            animation: heartBeat 1.5s ease-in-out infinite;
-            overflow-wrap: break-word;
+            color: white;
+            
+            /* Borde negro alrededor de las letras para máxima legibilidad */
+            -webkit-text-stroke: 2px var(--black);
+            text-shadow: 4px 4px 0 var(--black); /* Sombra negra dura */
+            
+            margin: 10px 0 20px 0;
+            
+            /* Animación suave de latido */
+            animation: heartBeat 2s infinite;
         }
 
-        /* El texto de abajo */
+        /* Línea divisoria decorativa */
+        .divider-line {
+            height: 3px;
+            background: var(--black);
+            width: 50%;
+            margin: 20px auto;
+            opacity: 0.3;
+            border-radius: 2px;
+        }
+
+        /* Postdata */
         .question-date {
             font-family: 'Comic Neue', cursive;
-            font-size: 1.1rem;
-            margin-top: 15px;
+            font-size: 1rem;
+            font-style: italic;
+            color: rgba(58, 58, 58, 0.9); /* Blanco un poco transparente */
             font-weight: bold;
-            color: white;
+            margin-top: 10px;
         }
 
-        /* Pequña telaraña en la esquina de la pregunta */
+        /* Telaraña esquina (Opcional, más sutil) */
         .question-box::after {
             content: '🕸️';
-            font-size: 3rem;
+            font-size: 4rem;
             position: absolute;
             bottom: -20px;
             right: -20px;
-            transform: rotate(-20deg);
-            z-index: 20;
+            opacity: 0.8;
+            transform: rotate(-10deg);
+            filter: drop-shadow(2px 2px 0 var(--black));
+        }
+
+        /* Ajustes Móvil */
+        @media (max-width: 600px) {
+            .big-question {
+                font-size: 2.2rem; /* Un poco más pequeño en celular para que quepa bien */
+                -webkit-text-stroke: 1.5px var(--black);
+            }
+            .question-box {
+                padding: 30px 15px;
+            }
         }
 
         .speech-bubble {
@@ -892,15 +1050,21 @@
 
                 <br>
                 <div class="question-box">
-                    <p class="question-intro">Por este 14 de Febrero... y todos los que siguen. ❤️</p>
+                    <div class="spidey-icon-mask">🕷️</div>
+
+                    <p class="question-intro">Por este 14 de Febrero... y todos los que siguen.</p>
+                    
                     <h1 class="big-question">
-                        ¿QUIERES COMPARTIR TODA LA VIDA CONMIGO?
+                        ¿QUIERES COMPARTIR<br>
+                        TODA LA VIDA CONMIGO?
                     </h1>
+                    
+                    <div class="divider-line"></div>
+
                     <p class="question-date">
-                        Pdt: Si o no desjuntada ya no hay I'm Sorry For You 🥺
+                        Pdt: Si o no, ya no hay devolución 🥺❤️
                     </p>
                 </div>
-
             </div>
 
         </div>
