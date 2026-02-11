@@ -1,9 +1,8 @@
+/* =========================================
+   1. IMPORTACIÓN DE FUENTES Y VARIABLES
+   ========================================= */
 /* Importamos fuentes estilo cómic */
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@700&display=swap');
-
-* {
- box-sizing: border-box;
-}
 
 :root {
  --spidey-red: #E23636;
@@ -14,31 +13,13 @@
  --black: #1a1a1a;
 }
 
-/* Modificación del Scrollbar */
-::-webkit-scrollbar {
- width: 18px;
+* {
+ box-sizing: border-box;
 }
 
-::-webkit-scrollbar-track {
- background-color: white;
- border-left: 3px solid var(--black);
- background-image: radial-gradient(var(--comic-gray) 15%, transparent 16%);
- background-size: 10px 10px;
-}
-
-::-webkit-scrollbar-thumb {
- background-color: var(--spidey-red);
- border: 3px solid var(--black);
- border-radius: 20px;
- box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.3);
-}
-
-::-webkit-scrollbar-thumb:hover {
- background-color: var(--spidey-blue);
- cursor: grab;
-}
-
-/* --- ANIMACIONES DEFINIDAS --- */
+/* =========================================
+   2. TODAS LAS ANIMACIONES (KEYFRAMES)
+   ========================================= */
 /* 1. Fondo de semitonos moviéndose */
 @keyframes scrollBackground {
  from {
@@ -65,7 +46,7 @@
  }
 }
 
-/* 3. flotando */
+/* 3. Flotando */
 @keyframes floatBubble {
 
  0%,
@@ -78,7 +59,7 @@
  }
 }
 
-/* 4. Araña bajando */
+/* 4. Araña baja */
 @keyframes spiderDrop {
  0% {
   top: -100px;
@@ -89,6 +70,7 @@
  }
 }
 
+/* Movimiento de la araña */
 @keyframes spiderWiggle {
 
  0%,
@@ -105,7 +87,7 @@
  }
 }
 
-/* 5. Vibración del título al pasar el mouse */
+/* 5. Vibración del título */
 @keyframes shakeImpact {
  0% {
   transform: translate(1px, 1px) rotate(0deg);
@@ -152,7 +134,125 @@
  }
 }
 
-/* Loader */
+/* Animaciones del Loader */
+@keyframes spiderBounce {
+
+ 0%,
+ 100% {
+  transform: translateY(0);
+ }
+
+ 50% {
+  transform: translateY(20px);
+ }
+}
+
+@keyframes webStretch {
+
+ 0%,
+ 100% {
+  height: 40vh;
+ }
+
+ 50% {
+  height: 42vh;
+ }
+
+ /* El hilo de araña */
+}
+
+@keyframes pulseText {
+ from {
+  transform: scale(1);
+ }
+
+ to {
+  transform: scale(1.05);
+ }
+}
+
+/* Animación del Scroll de noticias */
+@keyframes scrollNews {
+ 0% {
+  transform: translate(0, 0);
+ }
+
+ 100% {
+  transform: translate(-100%, 0);
+ }
+}
+
+/* Animación de latido del corazón */
+@keyframes heartBeat {
+ 0% {
+  transform: scale(1);
+ }
+
+ 14% {
+  transform: scale(1.1);
+ }
+
+ 28% {
+  transform: scale(1);
+ }
+
+ 42% {
+  transform: scale(1.1);
+ }
+
+ 70% {
+  transform: scale(1);
+ }
+}
+
+
+/* =========================================
+   3. ESTILOS GENERALES (BODY & SCROLLBAR)
+   ========================================= */
+
+body {
+ background-color: var(--spidey-blue);
+ font-family: 'Comic Neue', cursive;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ min-height: 100vh;
+ margin: 0;
+ background-image: radial-gradient(rgba(0, 0, 0, 0.3) 15%, transparent 16%),
+  radial-gradient(rgba(0, 0, 0, 0.3) 15%, transparent 16%);
+ background-size: 30px 30px;
+ background-position: 0 0, 15px 15px;
+ animation: scrollBackground 60s linear infinite;
+ overflow-x: hidden;
+}
+
+/* Modificación del Scrollbar */
+::-webkit-scrollbar {
+ width: 18px;
+}
+
+::-webkit-scrollbar-track {
+ background-color: white;
+ border-left: 3px solid var(--black);
+ background-image: radial-gradient(var(--comic-gray) 15%, transparent 16%);
+ background-size: 10px 10px;
+}
+
+::-webkit-scrollbar-thumb {
+ background-color: var(--spidey-red);
+ border: 3px solid var(--black);
+ border-radius: 20px;
+ box-shadow: inset -2px -2px 0px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+ background-color: var(--spidey-blue);
+ cursor: grab;
+}
+
+/* =========================================
+   4. PANTALLA DE CARGA (LOADER)
+   ========================================= */
 #comic-loader {
  position: fixed;
  top: 0;
@@ -160,25 +260,21 @@
  width: 100%;
  height: 100%;
  background-color: var(--spidey-blue);
- /* Fondo Azul Spidey */
 
  /* Patrón de puntos para textura */
  background-image: radial-gradient(rgba(0, 0, 0, 0.2) 15%, transparent 16%);
  background-size: 30px 30px;
 
  z-index: 99999;
- /* Encima de TODO */
  display: flex;
  justify-content: center;
  align-items: center;
  transition: transform 0.8s ease-in-out;
- /* Animación de salida suave */
 }
 
-/* Clase para ocultarlo cuando termine de cargar */
+/* Ocultar cuando termine de cargar */
 .loader-hidden {
  transform: translateY(-100%);
- /* Se va hacia arriba */
 }
 
 .loader-container {
@@ -221,61 +317,9 @@
  animation: pulseText 1s infinite alternate;
 }
 
-/* --- ANIMACIONES DEL LOADER --- */
-@keyframes spiderBounce {
-
- 0%,
- 100% {
-  transform: translateY(0);
- }
-
- 50% {
-  transform: translateY(20px);
- }
-}
-
-@keyframes webStretch {
-
- 0%,
- 100% {
-  height: 40vh;
- }
-
- 50% {
-  height: 42vh;
- }
-
- /* El hilo se estira con la araña */
-}
-
-@keyframes pulseText {
- from {
-  transform: scale(1);
- }
-
- to {
-  transform: scale(1.05);
- }
-}
-
-/* --- ESTILOS GENERALES --- */
-body {
- background-color: var(--spidey-blue);
- font-family: 'Comic Neue', cursive;
- display: flex;
- justify-content: center;
- align-items: center;
- min-height: 100vh;
- margin: 0;
- background-image: radial-gradient(rgba(0, 0, 0, 0.3) 15%, transparent 16%),
-  radial-gradient(rgba(0, 0, 0, 0.3) 15%, transparent 16%);
- background-size: 30px 30px;
- background-position: 0 0, 15px 15px;
- /* Animación del fondo */
- animation: scrollBackground 60s linear infinite;
- overflow-x: hidden;
-}
-
+/* =========================================
+   5. ESTRUCTURA PRINCIPAL
+   ========================================= */
 .comic-cover {
  background: white;
  width: 90%;
@@ -286,7 +330,7 @@ body {
  animation: floatBubble 3s ease-in-out infinite alternate;
 }
 
-/* La arañita colgando */
+/* La araña colgando */
 .hanging-spider-container {
  position: absolute;
  top: 20px;
@@ -312,7 +356,17 @@ body {
  z-index: 21;
 }
 
+/* Grid de viñetas */
+.comic-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ grid-template-rows: 450px 150px auto;
+ gap: 15px;
+}
 
+/* =========================================
+   6. HEADER Y NOTICIAS
+   ========================================= */
 /* Cabecera estilo Marvel */
 .header-box {
  background: var(--spidey-red);
@@ -347,6 +401,27 @@ body {
  font-family: 'Comic Neue', cursive;
 }
 
+/* Sticker de fecha */
+.sticker {
+ position: absolute;
+ top: -15px;
+ left: -15px;
+ background: var(--comic-yellow);
+ border: 3px solid var(--black);
+ border-radius: 50%;
+ width: 80px;
+ height: 80px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ font-weight: bold;
+ z-index: 10;
+ box-shadow: 3px 3px 0 var(--black);
+ transform-origin: top center;
+ animation: swingSticker 3s ease-in-out infinite;
+}
+
 /* Sección de noticias */
 .breaking-news {
  grid-column: 1 / -1;
@@ -367,46 +442,10 @@ body {
  animation: scrollNews 15s linear infinite;
 }
 
-@keyframes scrollNews {
- 0% {
-  transform: translate(0, 0);
- }
 
- 100% {
-  transform: translate(-100%, 0);
- }
-}
-
-/* Sticker de fecha */
-.sticker {
- position: absolute;
- top: -15px;
- left: -15px;
- background: var(--comic-yellow);
- border: 3px solid var(--black);
- border-radius: 50%;
- width: 80px;
- height: 80px;
- display: flex;
- align-items: center;
- justify-content: center;
- text-align: center;
- font-weight: bold;
- z-index: 10;
- box-shadow: 3px 3px 0 var(--black);
- /* Animación de balanceo */
- transform-origin: top center;
- animation: swingSticker 3s ease-in-out infinite;
-}
-
-/* Grid de viñetas */
-.comic-grid {
- display: grid;
- grid-template-columns: 1fr 1fr;
- grid-template-rows: 450px 150px auto;
- gap: 15px;
-}
-
+/* =========================================
+   7. PANELES Y CONTENIDO
+   ========================================= */
 .panel {
  border: 3px solid var(--black);
  background-size: cover;
@@ -423,7 +462,7 @@ body {
  z-index: 5;
 }
 
-/* Panel Principal (Grande) */
+/* Panel Principal (Foto 1) */
 .panel-1 {
  grid-column: 1 / -1;
  background-image: url('fotos/pic-1.jpeg');
@@ -433,6 +472,7 @@ body {
  justify-content: right;
 }
 
+/* Panel Texto */
 .panel-2 {
  background-color: var(--spidey-blue);
  display: flex;
@@ -445,6 +485,7 @@ body {
  background-size: cover;
 }
 
+/* Panel Contador de dias */
 .panel-3 {
  background: linear-gradient(45deg, var(--spidey-red), var(--spidey-blue));
  display: flex;
@@ -453,16 +494,41 @@ body {
  justify-content: center;
 }
 
-/* Sección de musica */
+.speech-bubble {
+ background: white;
+ border: 3px solid var(--black);
+ border-radius: 50% 50% 50% 5px;
+ padding: 20px;
+ text-align: center;
+ color: var(--black);
+ font-weight: bold;
+ font-size: 1rem;
+ position: absolute;
+ bottom: -20px;
+ right: 10px;
+ max-width: 180px;
+ box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+ animation: floatBubble 2.5s ease-in-out infinite;
+}
+
+/* Corazón latiendo en el panel 3 */
+.heart-beat {
+ font-size: 1rem;
+ animation: heartBeat 1.2s infinite;
+}
+
+
+/* =========================================
+   8. SECCIÓN DE MÚSICA
+   ========================================= */
 .music-section {
  grid-column: 1 / -1;
- /* Ocupa todo el ancho */
  background-color: white;
  border: 3px solid var(--black);
  padding: 15px;
  margin-top: 10px;
  position: relative;
- /* Un patrón de rayas tipo */
+ /* Patrón de rayas */
  background-image: repeating-linear-gradient(45deg,
    #ffffff,
    #ffffff 10px,
@@ -492,7 +558,7 @@ body {
 .simple-track {
  background: var(--spidey-red);
  color: white;
- padding: 10px;
+ padding: 5px;
  border: 2px solid var(--black);
  text-decoration: none;
  font-weight: bold;
@@ -508,7 +574,10 @@ body {
  box-shadow: 6px 6px 0 var(--black);
 }
 
-/*  Sección de estadisticas */
+
+/* =========================================
+   9. SECCIÓN DE ESTADÍSTICAS
+   ========================================= */
 .stats-section {
  grid-column: 1 / -1;
  background: white;
@@ -573,7 +642,10 @@ body {
  background: var(--black);
 }
 
-/* Sección de videos */
+
+/* =========================================
+   10. SECCIÓN DE VIDEOS
+   ========================================= */
 .video-section {
  grid-column: 1 / -1;
  margin-top: 30px;
@@ -632,25 +704,6 @@ body {
  object-fit: cover;
 }
 
-/* Ajuste para celulares */
-@media (max-width: 600px) {
- .video-section {
-  padding: 10px;
- }
-
- .video-wrapper {
-  max-width: 100%;
- }
-
- .video-wrapper video {
-  max-height: 70vh;
- }
-
- .video-caption {
-  width: 100%;
- }
-}
-
 .video-caption {
  background: white;
  color: var(--black);
@@ -661,6 +714,10 @@ body {
  font-family: 'Comic Neue', cursive;
 }
 
+
+/* =========================================
+   11. SECCIÓN FINAL (MISIONES Y FOTO)
+   ========================================= */
 /* Seccion final misiones */
 .missions-area {
  grid-column: 1 / -1;
@@ -691,7 +748,6 @@ body {
  transition: 0.3s;
  cursor: pointer;
  flex: 1 1 150px;
- /* Responsive */
  text-align: center;
 }
 
@@ -719,7 +775,7 @@ body {
  margin-bottom: 30px;
 }
 
-/* Adaptar imagen al marco */
+/* Adaptar imagen */
 .final-photo-frame img {
  width: 100%;
  height: auto;
@@ -727,132 +783,30 @@ body {
  border: 2px solid var(--black);
 }
 
-/* La caja de la pregunta */
-.question-box {
- background-color: #fff;
- /* Fondo blanco base */
 
- /* Patrón de puntos estilo cómic (Halftone) */
- background-image: radial-gradient(var(--comic-yellow) 40%, transparent 41%);
- background-size: 20px 20px;
- /* Tamaño de los puntos */
-
- border: 4px solid var(--black);
- padding: 40px 20px;
- box-shadow: 15px 15px 0 var(--black);
- /* Sombra dura */
-
- position: relative;
- max-width: 100%;
- text-align: center;
-
- /* Un poco chueco para darle dinamismo */
- transform: rotate(-1deg);
- margin-top: 20px;
-}
-
-/* Efecto de cinta adhesiva arriba */
-.tape-sticker {
- width: 150px;
- height: 40px;
- background-color: rgba(255, 255, 255, 0.6);
- border-left: 2px dashed rgba(0, 0, 0, 0.1);
- border-right: 2px dashed rgba(0, 0, 0, 0.1);
- box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
- position: absolute;
- top: -20px;
- left: 50%;
- transform: translateX(-50%) rotate(2deg);
- z-index: 25;
-}
-
-/* Texto introductorio: Como una etiqueta negra */
-.question-intro {
- display: inline-block;
- background: var(--black);
- color: white;
- padding: 5px 15px;
- font-family: 'Comic Neue', cursive;
- font-size: 1.1rem;
- font-weight: bold;
- transform: rotate(-2deg);
- /* Contraste con la caja */
- margin-bottom: 20px;
- box-shadow: 3px 3px 0 var(--spidey-red);
-}
-
-/* La Gran Pregunta */
-.big-question {
- font-family: 'Bangers', cursive;
- font-size: 3.5rem;
- /* ¡Más grande! */
- line-height: 1;
- color: var(--spidey-red);
-
- /* Borde blanco alrededor de las letras para separar del fondo */
- -webkit-text-stroke: 2px var(--black);
- text-shadow:
-  4px 4px 0px #000;
- /* Sombra sólida negra */
-
- margin: 20px 0;
- animation: heartBeat 1.5s ease-in-out infinite;
- z-index: 2;
- position: relative;
-}
-
-/* Resaltar parte del texto en otro color (Azul Spidey) */
-.highlight-text {
- color: var(--spidey-blue);
- font-size: 4rem;
- /* Un poco más grande aún */
-}
-
-/* El texto de abajo (Postdata) */
-.question-date {
- font-family: 'Comic Neue', cursive;
- font-size: 1.2rem;
- font-weight: bold;
- color: var(--black);
- background: white;
- border: 2px solid var(--black);
- display: inline-block;
- padding: 10px;
- border-radius: 10px;
- box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
- margin-top: 20px;
-}
-
-/* La telaraña decorativa */
+/* =========================================
+   12. LA CAJA DE LA PREGUNTA
+   ========================================= */
 .question-box {
  /* Fondo Rojo Intenso */
  background-color: var(--spidey-red);
-
- /* Textura sutil: Unas líneas diagonales muy suaves para que no sea un rojo plano aburrido */
  background-image: repeating-linear-gradient(45deg,
    rgba(0, 0, 0, 0.05),
    rgba(0, 0, 0, 0.05) 2px,
    transparent 2px,
    transparent 10px);
-
- /* Borde Negro Grueso */
  border: 4px solid var(--black);
  border-radius: 15px;
- /* Bordes redondeados, más suave */
-
- /* Sombra sólida en Azul para dar profundidad 3D */
  box-shadow: 0 8px 0 var(--spidey-blue), 0 15px 20px rgba(0, 0, 0, 0.3);
-
  padding: 40px 20px;
  margin-top: 50px;
- /* Espacio extra arriba */
  margin-bottom: 50px;
  position: relative;
  text-align: center;
  max-width: 100%;
 }
 
-/* Máscara flotante arriba */
+/* Araña en circulo */
 .spidey-icon-mask {
  font-size: 3rem;
  position: absolute;
@@ -871,12 +825,11 @@ body {
  z-index: 10;
 }
 
-/* Texto introductorio */
+/* Texto de introducción */
 .question-intro {
  font-family: 'Comic Neue', cursive;
  font-size: 1.2rem;
  color: white;
- /* Blanco para contraste */
  font-weight: bold;
  margin-bottom: 15px;
  text-transform: uppercase;
@@ -884,25 +837,19 @@ body {
  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* La Pregunta Grande */
+/* La Pregunta */
 .big-question {
  font-family: 'Bangers', cursive;
  font-size: 3.2rem;
  line-height: 1.1;
  color: white;
-
- /* Borde negro alrededor de las letras para máxima legibilidad */
  -webkit-text-stroke: 2px var(--black);
  text-shadow: 4px 4px 0 var(--black);
- /* Sombra negra dura */
-
  margin: 10px 0 20px 0;
-
- /* Animación suave de latido */
  animation: heartBeat 2s infinite;
 }
 
-/* Línea divisoria decorativa */
+/* Línea divisoria */
 .divider-line {
  height: 3px;
  background: var(--black);
@@ -918,12 +865,11 @@ body {
  font-size: 1rem;
  font-style: italic;
  color: rgba(58, 58, 58, 0.9);
- /* Blanco un poco transparente */
  font-weight: bold;
  margin-top: 10px;
 }
 
-/* Telaraña esquina (Opcional, más sutil) */
+/* Telaraña esquina decorativa */
 .question-box::after {
  content: '🕸️';
  font-size: 4rem;
@@ -935,60 +881,38 @@ body {
  filter: drop-shadow(2px 2px 0 var(--black));
 }
 
-/* Ajustes Móvil */
+
+/* =========================================
+   13. MEDIA QUERIES (AJUSTES PARA CELULAR)
+   ========================================= */
+
 @media (max-width: 600px) {
+
+ /* Generales */
+ .video-section {
+  padding: 10px;
+ }
+
+ /* Videos */
+ .video-wrapper {
+  max-width: 100%;
+ }
+
+ .video-wrapper video {
+  max-height: 70vh;
+ }
+
+ .video-caption {
+  width: 100%;
+ }
+
+ /* Pregunta Final */
  .big-question {
   font-size: 2.2rem;
-  /* Un poco más pequeño en celular para que quepa bien */
   -webkit-text-stroke: 1.5px var(--black);
  }
 
  .question-box {
   padding: 30px 15px;
- }
-}
-
-.speech-bubble {
- background: white;
- border: 3px solid var(--black);
- border-radius: 50% 50% 50% 5px;
- padding: 20px;
- text-align: center;
- color: var(--black);
- font-weight: bold;
- font-size: 1rem;
- position: absolute;
- bottom: -20px;
- right: 10px;
- max-width: 180px;
- box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
- animation: floatBubble 2.5s ease-in-out infinite;
-}
-
-/* Estilo para el corazón latiendo en el panel 3 */
-.heart-beat {
- font-size: 1rem;
- animation: heartBeat 1.2s infinite;
-}
-
-@keyframes heartBeat {
- 0% {
-  transform: scale(1);
- }
-
- 14% {
-  transform: scale(1.1);
- }
-
- 28% {
-  transform: scale(1);
- }
-
- 42% {
-  transform: scale(1.1);
- }
-
- 70% {
-  transform: scale(1);
  }
 }
