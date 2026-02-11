@@ -46,22 +46,22 @@ document.addEventListener("click", function (e) {
   const el = document.createElement("div");
   el.innerText = word;
 
-  // Aplicar estilos 
+  // Aplicar estilos
   el.style.position = "fixed";
   el.style.left = e.clientX + "px"; // Posición X del mouse
   el.style.top = e.clientY + "px"; // Posición Y del mouse
   el.style.color = randomColor;
   el.style.fontFamily = "'Bangers', cursive";
   el.style.fontSize = "2.5rem";
-  el.style.textShadow = "3px 3px 0px #000"; 
-  el.style.pointerEvents = "none"; 
-  el.style.zIndex = "9999"; 
-  el.style.userSelect = "none"; 
+  el.style.textShadow = "3px 3px 0px #000";
+  el.style.pointerEvents = "none";
+  el.style.zIndex = "9999";
+  el.style.userSelect = "none";
 
   // Estado inicial de la animación
   el.style.transform = "translate(-50%, -50%) scale(0.5)";
   el.style.opacity = "1";
-  el.style.transition = "all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)"; 
+  el.style.transition = "all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
 
   // Agregamos el elemento al cuerpo de la página
   document.body.appendChild(el);
@@ -76,4 +76,16 @@ document.addEventListener("click", function (e) {
   setTimeout(() => {
     el.remove();
   }, 600);
+});
+
+/* --- Loader --- */
+window.addEventListener("load", function () {
+  // Seleccionamos el loader
+  const loader = document.getElementById("comic-loader");
+
+  // Le damos un pequeño tiempo extra (1.5 seg) para que se vea la animación
+  // Si quieres que sea inmediato, cambia 1500 por 500
+  setTimeout(function () {
+    loader.classList.add("loader-hidden");
+  }, 1500);
 });

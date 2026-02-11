@@ -161,6 +161,84 @@
             }
         }
 
+        /* Loader */
+#comic-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--spidey-blue); /* Fondo Azul Spidey */
+            
+            /* Patrón de puntos para textura */
+            background-image: radial-gradient(rgba(0,0,0,0.2) 15%, transparent 16%);
+            background-size: 30px 30px;
+            
+            z-index: 99999; /* Encima de TODO */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.8s ease-in-out; /* Animación de salida suave */
+        }
+
+        /* Clase para ocultarlo cuando termine de cargar */
+        .loader-hidden {
+            transform: translateY(-100%); /* Se va hacia arriba */
+        }
+
+        .loader-container {
+            text-align: center;
+            position: relative;
+        }
+
+        /* El hilo de la telaraña */
+        .loader-web {
+            width: 4px;
+            height: 50vh; /* Largo inicial */
+            background: var(--black);
+            margin: 0 auto;
+            position: absolute;
+            bottom: 60px; /* Conecta con la araña */
+            left: 50%;
+            transform: translateX(-50%);
+            animation: webStretch 2s infinite ease-in-out;
+        }
+
+        /* La araña */
+        .loader-spider {
+            font-size: 4rem;
+            position: relative;
+            z-index: 2;
+            animation: spiderBounce 2s infinite ease-in-out;
+            filter: drop-shadow(0 10px 5px rgba(0,0,0,0.3));
+        }
+
+        /* Texto de carga */
+        .loader-text {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            color: white;
+            margin-top: 20px;
+            text-shadow: 3px 3px 0 var(--black);
+            letter-spacing: 2px;
+            animation: pulseText 1s infinite alternate;
+        }
+
+        /* --- ANIMACIONES DEL LOADER --- */
+        @keyframes spiderBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(20px); }
+        }
+
+        @keyframes webStretch {
+            0%, 100% { height: 40vh; }
+            50% { height: 42vh; } /* El hilo se estira con la araña */
+        }
+
+        @keyframes pulseText {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
 
         /* --- ESTILOS GENERALES --- */
         body {
@@ -875,6 +953,15 @@
 </head>
 
 <body>
+    <div id="comic-loader">
+        <div class="loader-container">
+            <div class="loader-web"></div>
+            <div class="loader-spider">🕷️</div>
+            <div class="loader-text">
+                ACTIVANDO SENTIDO ARÁCNIDO<span class="dots">...</span>
+            </div>
+        </div>
+    </div>
 
     <div class="comic-cover">
         <div class="sticker">
